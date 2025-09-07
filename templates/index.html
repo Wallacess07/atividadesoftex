@@ -6,20 +6,27 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body class="bg-jogo theme-claro">
-    <div class="config-area">
-        <label for="tema">Tema:</label>
-        <select id="tema">
-            <option value="theme-claro">Claro</option>
-            <option value="theme-escuro">Escuro</option>
-        </select>
-        <label for="fundo">Fundo:</label>
-        <select id="fundo">
-            <option value="bg-jogo">Jogo da Velha</option>
-            <option value="bg-floresta">Floresta Encantada</option>
-            <option value="bg-cidade">Cidade Futurista</option>
-        </select>
-    </div>
     <div class="container">
+        <div class="menu-config">
+            <button id="btn-menu" class="menu-btn">&#9776;</button>
+            <div id="config-area" class="config-area" style="display: none;">
+                <div class="config-item">
+                    <label for="tema-switch">Tema:</label>
+                    <label class="switch">
+                        <input type="checkbox" id="tema-switch">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="config-item">
+                    <label for="fundo">Fundo:</label>
+                    <select id="fundo">
+                        <option value="bg-jogo">Jogo da Velha</option>
+                        <option value="bg-floresta">Floresta Encantada</option>
+                        <option value="bg-cidade">Cidade Futurista</option>
+                    </select>
+                </div>
+            </div>
+        </div>
         <h1>Jogo da Velha</h1>
         <div id="pontuacao">
             <span id="pontos-x">X: 0</span>
@@ -41,20 +48,13 @@
         <button class="btn-reiniciar" onclick="reiniciarJogo()">
             <span class="icon-reload">&#x21bb;</span> Reiniciar
         </button>
+        <form id="feedback-form" class="feedback-form" style="margin-top:32px;">
+            <h2>Deixe seu feedback</h2>
+            <label for="feedback-text">Como foi sua experiência?</label>
+            <textarea id="feedback-text" name="feedback" rows="4" placeholder="Conte o que achou do jogo..." required></textarea>
+            <button type="submit" class="btn-reiniciar">Enviar Feedback</button>
+        </form>
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
-    <script>
-        const selectFundo = document.getElementById('fundo');
-        selectFundo.addEventListener('change', function() {
-            document.body.classList.remove('bg-jogo', 'bg-floresta', 'bg-cidade');
-            document.body.classList.add(selectFundo.value);
-        });
-
-        const selectTema = document.getElementById('tema');
-        selectTema.addEventListener('change', function() {
-            document.body.classList.remove('theme-claro', 'theme-escuro');
-            document.body.classList.add(selectTema.value);
-        });
-    </script>
 </body>
 </html>
